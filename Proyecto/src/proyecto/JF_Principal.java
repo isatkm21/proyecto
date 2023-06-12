@@ -9,6 +9,7 @@ import datos.ListaClientes;
 import datos.Logica;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,8 +27,26 @@ public class JF_Principal extends javax.swing.JFrame {
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        this.iniciarTabla();
     }
 
+    public void habilitarComponentes(){
+        
+    }
+    private void iniciarTabla(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Identificacion");
+        model.addColumn("Corriente");
+        model.addColumn("Ahorro");
+        model.addColumn("CDT");
+        this.listaClientes.setModel(model);
+        if(lista!=null){
+            for(Cliente c: lista.listaClientes()){
+                model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo()});
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -76,7 +95,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        listaClientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +113,6 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel3.setText("Nombre: ");
 
-        nombre.setEditable(false);
         nombre.setBackground(new java.awt.Color(253, 231, 255));
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +199,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Saldo de ahorro: ");
 
+        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(253, 231, 255));
         jTextField3.setText("jTextField3");
 
@@ -242,6 +261,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel9.setText("Saldo corriente:");
 
+        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(253, 231, 255));
         jTextField4.setText("jTextField4");
 
@@ -296,6 +316,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Saldo CDT: ");
 
+        jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(253, 231, 255));
         jTextField5.setText("jTextField5");
 
@@ -368,6 +389,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel13.setText("TOTAl: ");
 
+        jTextField7.setEditable(false);
         jTextField7.setBackground(new java.awt.Color(253, 231, 255));
         jTextField7.setText("jTextField7");
 
@@ -415,9 +437,9 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(204, 153, 255));
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(174, 149, 191));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        listaClientes.setAutoCreateRowSorter(true);
+        listaClientes.setBackground(new java.awt.Color(174, 149, 191));
+        listaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -474,8 +496,8 @@ public class JF_Principal extends javax.swing.JFrame {
                 "Nombre", "Identificación", "Corriente", "Ahorros", "CDT"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jScrollPane1.setViewportView(jTable1);
+        listaClientes.setGridColor(new java.awt.Color(255, 255, 255));
+        jScrollPane1.setViewportView(listaClientes);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -604,12 +626,22 @@ public class JF_Principal extends javax.swing.JFrame {
     private void btnagregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseClicked
         String nombre;
         int id = 0;
+        Cliente c = null;
         try {
             nombre = this.nombre.getText();
-            id = Integer.parseInt(this.cedula.getText());
             if(nombre.isBlank()){
-                
+                JOptionPane.showMessageDialog(null, "El campo de nombre no puede estar vacío");
+            }else{
+                id = Integer.parseInt(this.cedula.getText());
+                c = this.lista.buscarCliente(id);
+                if(c==null){
+                    c = new Cliente(nombre, id);
+                    this.lista.agregarCliente(c);
+                }else{
+                    JOptionPane.showMessageDialog(null, "El Cliente Ya existe");
+                }     
             }
+            this.iniciarTabla();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
         }
@@ -684,12 +716,12 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JTable listaClientes;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

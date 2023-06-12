@@ -201,7 +201,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="nombre">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="e7" red="fd" type="rgb"/>
                 </Property>
@@ -324,6 +323,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField3">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="e7" red="fd" type="rgb"/>
                 </Property>
@@ -434,6 +434,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField4">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="e7" red="fd" type="rgb"/>
                 </Property>
@@ -538,6 +539,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField5">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="e7" red="fd" type="rgb"/>
                 </Property>
@@ -672,6 +674,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField7">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="e7" red="fd" type="rgb"/>
                 </Property>
@@ -739,7 +742,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable1">
+                <Component class="javax.swing.JTable" name="listaClientes">
                   <Properties>
                     <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
