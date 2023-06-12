@@ -12,10 +12,13 @@ import javax.swing.JOptionPane;
  * @author ISABELLA MANJARRES
  */
 public class CDT implements Serializable{
-    private double saldo;
     private double intereses;
+    private double saldo;
+   
 
     public CDT() {
+        this.saldo=0;
+        this.intereses=0;
     }
 
     public CDT(double saldo, double intereses) {
