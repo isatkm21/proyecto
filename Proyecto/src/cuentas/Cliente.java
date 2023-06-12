@@ -22,9 +22,9 @@ public class Cliente implements Archivable {
     public Cliente(String nombre, int id) {
         this.nombre = nombre;
         this.id = id;
-        this.cdt = new CDT();
         this.ahorro = new Ahorro();
         this.corriente = new Corriente();
+        this.crearCDT(0, 0);
     }
 
     public String getNombre() {
@@ -55,8 +55,10 @@ public class Cliente implements Archivable {
         this.id = id;
     }
 
-    public void setCdt(CDT cdt) {
-        this.cdt = cdt;
+    public void setCdt(CDT cdtt) {
+        this.cdt=new CDT();
+        this.cdt.setSaldo(cdtt.getSaldo());
+        this.cdt.setIntereses(cdtt.getIntereses());
     }
 
     public void setCorriente(Corriente corriente) {
@@ -97,5 +99,9 @@ public class Cliente implements Archivable {
                               String.valueOf(this.getCdt().getSaldo())
                             };
           return data;
+    }
+    
+    public void crearCDT(double saldo, double intereses){
+        this.cdt= new CDT(saldo, intereses);
     }
 }

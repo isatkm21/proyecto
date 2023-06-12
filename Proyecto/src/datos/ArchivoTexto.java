@@ -40,7 +40,7 @@ public class ArchivoTexto implements Logica {
             pw.println(c.getDataFileFormat());
             pw.close();
         } catch (IOException ioe) {
-            throw new IOException("El archivono existe o no pudo ser creado para escritura");
+            throw new IOException("Inicializando Archivo");
 
         } finally {
             if (this.aEscritura != null) {
@@ -64,7 +64,7 @@ public class ArchivoTexto implements Logica {
             return null;
         } catch (FileNotFoundException fne) {
 
-            throw new IOException("El archivo de lectura no existe o no es posible abrirlo");
+            throw new IOException("Verficando Archivos");
 
         }finally{
             if(this.aLectura!=null)
@@ -85,7 +85,7 @@ public class ArchivoTexto implements Logica {
             }
             return listado;
         } catch (FileNotFoundException fne) {
-           throw new IOException("El archivo de lectura no existe o no es posible abrirlo");
+           throw new IOException("Verificando Archivos");
 
         }finally{
             if(this.aLectura!=null)
