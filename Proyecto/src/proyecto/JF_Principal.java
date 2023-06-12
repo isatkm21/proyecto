@@ -8,6 +8,7 @@ import cuentas.CDT;
 import cuentas.Cliente;
 import datos.ListaClientes;
 import datos.Logica;
+import static java.lang.Integer.parseInt;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -841,11 +842,17 @@ public class JF_Principal extends javax.swing.JFrame {
         int id = 0;
         try {
             id = Integer.parseInt(this.cedula.getText());
- 
+            int numMeses = parseInt(this.numMes.getText());
             for (Cliente c : this.lista.listaClientes()) {
+                c.getAhorro().aumentarMes(numMeses);
+                c.getCdt().aumentarMes(numMeses);
                 if (c.getId() == id) {
                     this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
-                }
+                    JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+c.getAhorro().getSaldo());
+                    this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                    JOptionPane.showMessageDialog(null, "El nuevo monto en el CDT es: "+c.getCdt().getSaldo());
+                    this.total.setText(Double.toString(c.montoTotal()));
+                 }
             }
             this.iniciarTabla();
 

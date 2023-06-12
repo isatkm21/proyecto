@@ -16,12 +16,12 @@ public class Ahorro extends Cuenta implements Serializable {
 
     public Ahorro(double intereses, double saldo) {
         super(saldo);
-        this.intereses = intereses;
+        this.intereses = 0.6;
     }
 
     public Ahorro(){
         super(0);
-        this.intereses =0;
+        this.intereses =0.6;
     }
 
     @Override
@@ -42,8 +42,10 @@ public class Ahorro extends Cuenta implements Serializable {
     
     public void aumentarMes(int numMeses){
         double valor = super.getSaldo();
-       valor= valor + (valor*this.intereses);
-       super.setSaldo(valor);
-       JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
+        for(int i=0; i<numMeses ; i++){
+            valor= valor + (valor*this.intereses);
+        }
+        super.setSaldo(valor);
+       
     }
 }
