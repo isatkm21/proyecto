@@ -8,7 +8,7 @@ package datos;
  *
  * @author ISABELLA MANJARRES
  */
-public interface Archivo {
-    void guardar();
-    void leerArchivo();
+public interface Archivable {
+    String getDataFileFormat();
+    String[] getDataForTable();
 }

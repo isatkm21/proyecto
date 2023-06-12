@@ -8,7 +8,11 @@ import cuentas.CDT;
 import cuentas.Cliente;
 import datos.ListaClientes;
 import datos.Logica;
+import java.io.IOException;
 import static java.lang.Integer.parseInt;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JF_Principal extends javax.swing.JFrame {
 
-    Logica lista = new ListaClientes();
+    Logica lista = new ArchivoTexto();
 
     /**
      * Creates new form JF_Principal
@@ -62,8 +66,13 @@ public class JF_Principal extends javax.swing.JFrame {
         model.addColumn("Total");
         this.listaClientes.setModel(model);
         if (lista != null) {
-            for (Cliente c : lista.listaClientes()) {
-                model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(),c.montoTotal()});
+            try {
+                List<Cliente> list2 = lista.listaClientes();
+                for (Cliente c : list2) {
+                    model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(),c.montoTotal()});
+                }
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
             }
         }
     }
@@ -639,9 +648,14 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         int id = 0;
+        Cliente w=null;
         try {
             id = Integer.parseInt(this.cedula.getText());
-            Cliente w = this.lista.buscarCliente(id);
+            try {
+                w = this.lista.buscarCliente(id);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "El archivo de lectura no existe o no es posible abrirlo");
+            }
             if (w == null) {
                 JOptionPane.showMessageDialog(null, "Error en la Busqueda, No se encontraron Similares");
             } else {
@@ -668,10 +682,18 @@ public class JF_Principal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El campo de nombre no puede estar vacío");
             } else {
                 id = Integer.parseInt(this.cedula.getText());
-                c = this.lista.buscarCliente(id);
+                try {
+                    c = this.lista.buscarCliente(id);
+                } catch (IOException ex) {
+                   JOptionPane.showMessageDialog(null, "El archivo de lectura no existe o no es posible abrirlo");
+                }
                 if (c == null) {
                     c = new Cliente(nombre, id);
-                    this.lista.agregarCliente(c);
+                    try {
+                        this.lista.agregarCliente(c);
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "El archivono existe o no pudo ser creado para escritura");
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "El Cliente Ya existe");
                 }
@@ -715,6 +737,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_cAhorroMouseClicked
 
@@ -738,6 +762,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_rAhorrosMouseClicked
 
@@ -757,6 +783,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_cCorrienteMouseClicked
 
@@ -780,6 +808,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");;
         }
     }//GEN-LAST:event_rCorrienteMouseClicked
 
@@ -811,6 +841,8 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_abrirMouseClicked
 
@@ -835,6 +867,8 @@ public class JF_Principal extends javax.swing.JFrame {
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_cerrarMouseClicked
 
@@ -858,6 +892,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
     }//GEN-LAST:event_avanzarMouseClicked
 

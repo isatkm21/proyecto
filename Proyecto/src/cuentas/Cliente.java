@@ -4,6 +4,7 @@
  */
 package cuentas;
 
+import datos.Archivable;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
@@ -11,7 +12,7 @@ import java.io.Serializable;
  *
  * @author ISABELLA MANJARRES
  */
-public class Cliente implements Serializable {
+public class Cliente implements Archivable {
     private String nombre;
     private int id;
     private CDT cdt;
@@ -76,5 +77,25 @@ public class Cliente implements Serializable {
         writer.println(this.getAhorro().getSaldo());
         writer.println(this.getCorriente().getSaldo());
         writer.println(this.getCdt().getSaldo());
+    }
+
+    @Override
+    public String getDataFileFormat() {
+        return this.getNombre()+";"+
+                this.getId()+";"+
+                this.getCorriente().getSaldo()+";"+
+                this.getAhorro().getSaldo()+";"+
+                this.getCdt().getSaldo();
+    }
+
+    @Override
+    public String[] getDataForTable() {
+        String data[] ={this.getNombre(),
+                              String.valueOf(this.getId()),
+                              String.valueOf(this.getCorriente().getSaldo()),
+                              String.valueOf(this.getAhorro().getSaldo()),
+                              String.valueOf(this.getCdt().getSaldo())
+                            };
+          return data;
     }
 }

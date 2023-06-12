@@ -5,6 +5,7 @@
 package datos;
 
 import cuentas.Cliente;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ListaClientes implements Logica, Serializable{
         this.listado = new ArrayList();
     }
     @Override
-    public void agregarCliente(Cliente c) {
+    public void agregarCliente(Cliente c) throws IOException{
         this.listado.add(c);
         JOptionPane.showMessageDialog(null, "Cliente registrado con exito");
     }

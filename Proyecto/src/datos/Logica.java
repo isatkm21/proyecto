@@ -5,6 +5,7 @@
 package datos;
 
 import cuentas.Cliente;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,8 +13,8 @@ import java.util.List;
  * @author ISABELLA MANJARRES
  */
 public interface Logica {
-    void agregarCliente(Cliente c);
-    Cliente buscarCliente(int id);
-    List<Cliente> listaClientes();
+    void agregarCliente(Cliente c)throws IOException ;
+    Cliente buscarCliente(int id)throws IOException;
+    List<Cliente> listaClientes() throws IOException ;
     
 }

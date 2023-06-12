@@ -8,19 +8,24 @@ import cuentas.Cliente;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
  * @author david
  */
-public class ArhivoTexto implements Logica, Archivo {
+public class ArhivoTexto implements Logica {
     
-    private ListaClientes listado;
     private File archivo;
+    private FileWriter aEscritura;
+    private Scanner aLectura;
 //    private 
 
     public ArhivoTexto() {
@@ -28,58 +33,80 @@ public class ArhivoTexto implements Logica, Archivo {
     }
     
     @Override
-    public void agregarCliente(Cliente c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public Cliente buscarCliente(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public List<Cliente> listaClientes() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    @Override
-    public void guardar() {
-        PrintWriter writer;
-        if (!archivo.exists()) {//si el archivo no existe
-            try {
-                archivo.createNewFile();
-            } catch (Exception e) {
+    public void agregarCliente(Cliente c) throws IOException{
+        try {
+            this.aEscritura = new FileWriter(this.archivo, true);
+            PrintWriter pw = new PrintWriter(this.aEscritura);
+            pw.println(c.getDataFileFormat());
+            pw.close();
+        } catch (IOException ioe) {
+            throw new IOException("El archivono existe o no pudo ser creado para escritura");
+
+        } finally {
+            if (this.aEscritura != null) {
+                this.aEscritura.close();
             }
         }
-        try {
-            Cliente aux;
-            writer = new PrintWriter(this.archivo);
-            for (int i = 0; i < listado.getListado().size(); i++) {
-                aux = listado.getListado().get(i);
-                aux.guardar(writer);
-            }
-            writer.close();
-        } catch (Exception e) {
-        }
-        
     }
     
     @Override
-    public void leerArchivo() {
+    public Cliente buscarCliente(int id) throws  IOException{
         try {
-            FileReader reader = new FileReader(this.archivo);
-            BufferedReader bReader = new BufferedReader(reader);
-            String linea = null;
-            while(linea!=null){
-                linea = bReader.readLine();
-                if(linea!=null){
-                    System.out.println(linea+"\n");
+            this.aLectura = new Scanner(this.archivo);
+            while(this.aLectura.hasNext()){
+                String datos[] = this.aLectura.nextLine().split(";");
+                Cliente c = this.cargarDatos(datos);
+                if(c.getId()==id){
+                    return c;
                 }
+            
             }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace(System.out);
+            return null;
+        } catch (FileNotFoundException fne) {
+
+            throw new IOException("El archivo de lectura no existe o no es posible abrirlo");
+
+        }finally{
+            if(this.aLectura!=null)
+                this.aLectura.close();
         }
+
+    }
+    
+    @Override
+    public List<Cliente> listaClientes() throws IOException {
+        List<Cliente> listado = new ArrayList();
+        try {
+            this.aLectura = new Scanner(this.archivo);
+            while(this.aLectura.hasNext()){
+                String datos[] = this.aLectura.nextLine().split(";");
+                Cliente c = this.cargarDatos(datos);
+                listado.add(c);
+            }
+            return listado;
+        } catch (FileNotFoundException fne) {
+           throw new IOException("El archivo de lectura no existe o no es posible abrirlo");
+
+        }finally{
+            if(this.aLectura!=null)
+                this.aLectura.close();
+        }
+    }
+    
+     private Cliente cargarDatos(String data[]){
+        
+        Cliente c=null;
+        String nombre = data[0];
+        int id = Integer.valueOf(data[1]);
+        c=new Cliente(nombre,id);
+        double saldoC = Double.valueOf(data[2]);
+        c.getCorriente().setSaldo(saldoC);
+        double saldoA = Double.valueOf(data[3]);
+        c.getAhorro().setSaldo(saldoA);
+        double saldocdt = Double.valueOf(data[4]);
+        c.getCdt().setSaldo(saldocdt);
+        return c;
     }
     
 }
+
