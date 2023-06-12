@@ -707,6 +707,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 if (c.getId() == id) {
                     c.getAhorro().consignar(consig);
                     this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
+                    this.total.setText(Double.toString(c.montoTotal()));
                 }
             }
             this.iniciarTabla();
@@ -728,6 +729,7 @@ public class JF_Principal extends javax.swing.JFrame {
                     } else {
                         c.getAhorro().retirar(retirar);
                         this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
+                        this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
             }
@@ -747,6 +749,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 if (c.getId() == id) {
                     c.getCorriente().consignar(consig);
                     this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                    this.total.setText(Double.toString(c.montoTotal()));
                 }
             }
             this.iniciarTabla();
@@ -768,6 +771,7 @@ public class JF_Principal extends javax.swing.JFrame {
                     } else {
                         c.getCorriente().retirar(retirar);
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                        this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
             }
@@ -799,6 +803,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "CDT creado con éxito!");
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
                         this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                        this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
                 this.iniciarTabla();
@@ -822,6 +827,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "CDT cerrado con éxito!");
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
                         this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                        this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
                 this.iniciarTabla();
