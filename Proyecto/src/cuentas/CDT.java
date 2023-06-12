@@ -45,7 +45,7 @@ public class CDT implements Serializable{
         return dinero;
     }
     
-    public void aumentarMes(){
+    public void aumentarMes(int numMeses){
         this.saldo = this.saldo + (this.saldo*this.intereses);
         JOptionPane.showMessageDialog(null, "El Nuevo saldo en el CDT es: "+this.saldo);
     }

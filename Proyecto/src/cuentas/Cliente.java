@@ -65,5 +65,7 @@ public class Cliente implements Serializable {
         this.ahorro = ahorro;
     }
     
-    
+    public double montoTotal(){
+        return this.cdt.getSaldo()+this.corriente.getSaldo()+this.ahorro.getSaldo();
+    }
 }

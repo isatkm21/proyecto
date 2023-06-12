@@ -40,7 +40,7 @@ public class Ahorro extends Cuenta implements Serializable {
        JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
     }
     
-    public void aumentarMes(){
+    public void aumentarMes(int numMeses){
         double valor = super.getSaldo();
        valor= valor + (valor*this.intereses);
        super.setSaldo(valor);

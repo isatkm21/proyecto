@@ -58,10 +58,11 @@ public class JF_Principal extends javax.swing.JFrame {
         model.addColumn("Corriente");
         model.addColumn("Ahorro");
         model.addColumn("CDT");
+        model.addColumn("Total");
         this.listaClientes.setModel(model);
         if (lista != null) {
             for (Cliente c : lista.listaClientes()) {
-                model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo()});
+                model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(),c.montoTotal()});
             }
         }
     }
@@ -414,9 +415,9 @@ public class JF_Principal extends javax.swing.JFrame {
         avanzar.setText("Avanzar mes");
         avanzar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         avanzar.setEnabled(false);
-        avanzar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avanzarActionPerformed(evt);
+        avanzar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                avanzarMouseClicked(evt);
             }
         });
 
@@ -635,10 +636,6 @@ public class JF_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void avanzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_avanzarActionPerformed
-
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         int id = 0;
         try {
@@ -651,6 +648,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 this.sAhorro.setText(Double.toString(w.getAhorro().getSaldo()));
                 this.sCorriente.setText(Double.toString(w.getCorriente().getSaldo()));
                 this.sCDT.setText(Double.toString(w.getCdt().getSaldo()));
+                this.total.setText(Double.toString(w.montoTotal()));
                 this.habilitarComponentes();
             }
         } catch (NumberFormatException ex) {
@@ -677,14 +675,19 @@ public class JF_Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "El Cliente Ya existe");
                 }
             }
-            this.habilitarComponentes();
+//            this.habilitarComponentes();
             this.iniciarTabla();
+            this.limpiar();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
         }
     }//GEN-LAST:event_btnagregarMouseClicked
 
     private void limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarMouseClicked
+        this.limpiar();
+    }//GEN-LAST:event_limpiarMouseClicked
+    
+    public void limpiar(){
         this.nombre.setText("");
         this.cedula.setText("");
         this.sAhorro.setText("");
@@ -693,8 +696,8 @@ public class JF_Principal extends javax.swing.JFrame {
         this.numMes.setText("");
         this.total.setText("");
         this.deshabilitarComponentes();
-    }//GEN-LAST:event_limpiarMouseClicked
-
+    }
+    
     private void cAhorroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cAhorroMouseClicked
         int id = 0;
         try {
@@ -827,6 +830,23 @@ public class JF_Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
         }
     }//GEN-LAST:event_cerrarMouseClicked
+
+    private void avanzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avanzarMouseClicked
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+ 
+            for (Cliente c : this.lista.listaClientes()) {
+                if (c.getId() == id) {
+                    this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
+                }
+            }
+            this.iniciarTabla();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        }
+    }//GEN-LAST:event_avanzarMouseClicked
 
     /**
      * @param args the command line arguments
