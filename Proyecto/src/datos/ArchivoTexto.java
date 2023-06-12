@@ -21,21 +21,21 @@ import java.util.Scanner;
  *
  * @author david
  */
-public class ArhivoTexto implements Logica {
+public class ArchivoTexto implements Logica {
     
     private File archivo;
     private FileWriter aEscritura;
     private Scanner aLectura;
 //    private 
 
-    public ArhivoTexto() {
+    public ArchivoTexto() {
         this.archivo = new File("clientes.txt");
     }
     
     @Override
-    public void agregarCliente(Cliente c) throws IOException{
+    public void agregarCliente(Cliente c, boolean mod) throws IOException{
         try {
-            this.aEscritura = new FileWriter(this.archivo, true);
+            this.aEscritura = new FileWriter(this.archivo, mod);
             PrintWriter pw = new PrintWriter(this.aEscritura);
             pw.println(c.getDataFileFormat());
             pw.close();
@@ -108,5 +108,17 @@ public class ArhivoTexto implements Logica {
         return c;
     }
     
+    @Override
+     public void eliminar(){
+        if (this.archivo.exists()) {
+            if (this.archivo.delete()) {
+                System.out.println("Archivo eliminado correctamente: ");
+            } else {
+                System.out.println("No se puede modificar el archivo: " );
+            }
+        } else {
+            System.out.println("El archivo no existe: ");
+        }
+     }
 }
 

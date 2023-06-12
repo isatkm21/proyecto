@@ -46,8 +46,10 @@ public class CDT implements Serializable{
     }
     
     public void aumentarMes(int numMeses){
-        for(int i=0; i<numMeses; i++){
-        this.saldo = this.saldo + (this.saldo*this.intereses);    
+        double valor = this.getSaldo();
+        for(int i=0; i<numMeses ; i++){
+            valor= valor + (valor*this.intereses);
         }
+        this.setSaldo(valor);
     }
 }

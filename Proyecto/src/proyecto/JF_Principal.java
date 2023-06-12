@@ -6,6 +6,7 @@ package proyecto;
 
 import cuentas.CDT;
 import cuentas.Cliente;
+import datos.ArchivoTexto;
 import datos.ListaClientes;
 import datos.Logica;
 import java.io.IOException;
@@ -69,7 +70,7 @@ public class JF_Principal extends javax.swing.JFrame {
             try {
                 List<Cliente> list2 = lista.listaClientes();
                 for (Cliente c : list2) {
-                    model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(),c.montoTotal()});
+                    model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(), c.montoTotal()});
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
@@ -648,7 +649,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         int id = 0;
-        Cliente w=null;
+        Cliente w = null;
         try {
             id = Integer.parseInt(this.cedula.getText());
             try {
@@ -685,12 +686,12 @@ public class JF_Principal extends javax.swing.JFrame {
                 try {
                     c = this.lista.buscarCliente(id);
                 } catch (IOException ex) {
-                   JOptionPane.showMessageDialog(null, "El archivo de lectura no existe o no es posible abrirlo");
+                    JOptionPane.showMessageDialog(null, "El archivo de lectura no existe o no es posible abrirlo");
                 }
                 if (c == null) {
                     c = new Cliente(nombre, id);
                     try {
-                        this.lista.agregarCliente(c);
+                        this.lista.agregarCliente(c, true);
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "El archivono existe o no pudo ser creado para escritura");
                     }
@@ -709,8 +710,8 @@ public class JF_Principal extends javax.swing.JFrame {
     private void limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarMouseClicked
         this.limpiar();
     }//GEN-LAST:event_limpiarMouseClicked
-    
-    public void limpiar(){
+
+    public void limpiar() {
         this.nombre.setText("");
         this.cedula.setText("");
         this.sAhorro.setText("");
@@ -720,18 +721,22 @@ public class JF_Principal extends javax.swing.JFrame {
         this.total.setText("");
         this.deshabilitarComponentes();
     }
-    
+
     private void cAhorroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cAhorroMouseClicked
         int id = 0;
         try {
             id = Integer.parseInt(this.cedula.getText());
             double consig = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
-            for (Cliente c : this.lista.listaClientes()) {
-                if (c.getId() == id) {
-                    c.getAhorro().consignar(consig);
+            List<Cliente> list2 = lista.listaClientes();
+            this.lista.eliminar();
+            for (Cliente c : list2) {
+                Cliente aux = c;
+                if (aux.getId() == id) {
+                    aux.getAhorro().consignar(consig);
                     this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
                     this.total.setText(Double.toString(c.montoTotal()));
                 }
+                this.lista.agregarCliente(aux, true);
             }
             this.iniciarTabla();
 
@@ -747,7 +752,9 @@ public class JF_Principal extends javax.swing.JFrame {
         try {
             id = Integer.parseInt(this.cedula.getText());
             double retirar = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
-            for (Cliente c : this.lista.listaClientes()) {
+            List<Cliente> list2 = lista.listaClientes();
+            this.lista.eliminar();
+            for (Cliente c : list2) {
                 if (c.getId() == id) {
                     if (c.getAhorro().getSaldo() < retirar) {
                         JOptionPane.showMessageDialog(null, "El Valor a retirar, excede el saldo de la cuenta");
@@ -757,6 +764,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
+                this.lista.agregarCliente(c,true);
             }
             this.iniciarTabla();
 
@@ -772,12 +780,15 @@ public class JF_Principal extends javax.swing.JFrame {
         try {
             id = Integer.parseInt(this.cedula.getText());
             double consig = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
-            for (Cliente c : this.lista.listaClientes()) {
+            List<Cliente> list2 = lista.listaClientes();
+            this.lista.eliminar();
+            for (Cliente c : list2) {
                 if (c.getId() == id) {
                     c.getCorriente().consignar(consig);
                     this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
                     this.total.setText(Double.toString(c.montoTotal()));
                 }
+                this.lista.agregarCliente(c, true);
             }
             this.iniciarTabla();
 
@@ -793,7 +804,9 @@ public class JF_Principal extends javax.swing.JFrame {
         try {
             id = Integer.parseInt(this.cedula.getText());
             double retirar = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
-            for (Cliente c : this.lista.listaClientes()) {
+            List<Cliente> list2 = lista.listaClientes();
+            this.lista.eliminar();
+            for (Cliente c : list2) {
                 if (c.getId() == id) {
                     if (c.getCorriente().getSaldo() < retirar) {
                         JOptionPane.showMessageDialog(null, "El Valor a retirar, excede el saldo de la cuenta");
@@ -803,6 +816,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
+                this.lista.agregarCliente(c, true);
             }
             this.iniciarTabla();
 
@@ -823,19 +837,24 @@ public class JF_Principal extends javax.swing.JFrame {
                         + " \nPrimero, debe cerrar el existente");
             } else {
                 double saldo = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor inicial del nuevo CDT: "));
-                double interes;
+                double interes=0.5;
                 do {
                     interes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el porcentaje de intereses: "
                             + "\nEjemplo: 50% = 0.5 \nEl Porcertanje Ingresado, no puede ser mayor a 1"));
                 } while (interes > 1);
-                for (Cliente c : this.lista.listaClientes()) {
+                List<Cliente> list2 = lista.listaClientes();
+                this.lista.eliminar();
+                for (Cliente c : list2) {
                     if (c.getId() == id) {
-                        c.setCdt(new CDT(saldo, interes));
+//                        c.setCdt(new CDT(saldo, interes));
+                        c.getCdt().setSaldo(saldo);
+                        c.getCdt().setIntereses(interes);
                         JOptionPane.showMessageDialog(null, "CDT creado con éxito!");
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
                         this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
                         this.total.setText(Double.toString(c.montoTotal()));
                     }
+                    this.lista.agregarCliente(c, true);
                 }
                 this.iniciarTabla();
             }
@@ -847,13 +866,15 @@ public class JF_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_abrirMouseClicked
 
     private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
-       int id = 0;
+        int id = 0;
         try {
             id = Integer.parseInt(this.cedula.getText());
             if (Double.parseDouble(this.sCDT.getText()) == 0) {
                 JOptionPane.showMessageDialog(null, "El CDT aun no ha sido creado");
             } else {
-                for (Cliente c : this.lista.listaClientes()) {
+                List<Cliente> list2 = lista.listaClientes();
+                this.lista.eliminar();
+                for (Cliente c : list2) {
                     if (c.getId() == id) {
                         double consig = c.getCdt().cerrar();
                         c.getCorriente().consignar(consig);
@@ -862,6 +883,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
                         this.total.setText(Double.toString(c.montoTotal()));
                     }
+                    this.lista.agregarCliente(c, true);
                 }
                 this.iniciarTabla();
             }
@@ -877,16 +899,20 @@ public class JF_Principal extends javax.swing.JFrame {
         try {
             id = Integer.parseInt(this.cedula.getText());
             int numMeses = parseInt(this.numMes.getText());
-            for (Cliente c : this.lista.listaClientes()) {
-                c.getAhorro().aumentarMes(numMeses);
-                c.getCdt().aumentarMes(numMeses);
-                if (c.getId() == id) {
-                    this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
-                    JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+c.getAhorro().getSaldo());
+            List<Cliente> list2 = lista.listaClientes();
+            this.lista.eliminar();
+            for (Cliente c : list2) {
+                Cliente aux=c;
+                aux.getAhorro().aumentarMes(numMeses);
+                aux.getCdt().aumentarMes(numMeses);
+                if (aux.getId() == id) {
+                    this.sAhorro.setText(Double.toString(aux.getAhorro().getSaldo()));
+                    JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: " + aux.getAhorro().getSaldo());
                     this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
-                    JOptionPane.showMessageDialog(null, "El nuevo monto en el CDT es: "+c.getCdt().getSaldo());
+                    JOptionPane.showMessageDialog(null, "El nuevo monto en el CDT es: " + aux.getCdt().getSaldo());
                     this.total.setText(Double.toString(c.montoTotal()));
-                 }
+                }
+                this.lista.agregarCliente(aux, true);
             }
             this.iniciarTabla();
 

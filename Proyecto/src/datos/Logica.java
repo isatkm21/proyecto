@@ -13,8 +13,8 @@ import java.util.List;
  * @author ISABELLA MANJARRES
  */
 public interface Logica {
-    void agregarCliente(Cliente c)throws IOException ;
+    void agregarCliente(Cliente c, boolean mod)throws IOException ;
     Cliente buscarCliente(int id)throws IOException;
     List<Cliente> listaClientes() throws IOException ;
-    
+    void eliminar();
 }

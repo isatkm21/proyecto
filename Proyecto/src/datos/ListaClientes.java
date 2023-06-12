@@ -22,7 +22,7 @@ public class ListaClientes implements Logica, Serializable{
         this.listado = new ArrayList();
     }
     @Override
-    public void agregarCliente(Cliente c) throws IOException{
+    public void agregarCliente(Cliente c, boolean mod) throws IOException{
         this.listado.add(c);
         JOptionPane.showMessageDialog(null, "Cliente registrado con exito");
     }
@@ -44,6 +44,11 @@ public class ListaClientes implements Logica, Serializable{
 
     public List<Cliente> getListado() {
         return listado;
+    }
+
+    @Override
+    public void eliminar() {
+        this.listado= new ArrayList();
     }
     
 }
