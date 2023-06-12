@@ -31,27 +31,27 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNOMBRE = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCEDULA = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtsaldoAHORRO = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtsaldoCORRIENTE = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtsaldoCDT = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtMES = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 22), new java.awt.Dimension(0, 22), new java.awt.Dimension(32767, 22));
         jSeparator2 = new javax.swing.JSeparator();
@@ -62,7 +62,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtTOTAL = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,22 +82,26 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Logo.png"))); // NOI18N
 
         jLabel2.setText("Datos del cliente");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jLabel3.setText("Nombre: ");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNOMBRE.setEditable(false);
+        txtNOMBRE.setBackground(new java.awt.Color(253, 231, 255));
+        txtNOMBRE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNOMBREActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Cédula: ");
 
-        jTextField2.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField2.setText("jTextField2");
+        txtCEDULA.setBackground(new java.awt.Color(253, 231, 255));
+        txtCEDULA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCEDULAActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Información Bancaria");
 
@@ -106,8 +110,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Saldo de ahorro: ");
 
-        jTextField3.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField3.setText("jTextField3");
+        txtsaldoAHORRO.setBackground(new java.awt.Color(253, 231, 255));
 
         jButton1.setBackground(new java.awt.Color(204, 102, 255));
         jButton1.setText("Consignar");
@@ -129,8 +132,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel9.setText("Saldo corriente:");
 
-        jTextField4.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField4.setText("jTextField4");
+        txtsaldoCORRIENTE.setBackground(new java.awt.Color(253, 231, 255));
 
         jButton3.setBackground(new java.awt.Color(204, 102, 255));
         jButton3.setText("Consignar");
@@ -142,8 +144,12 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Saldo CDT: ");
 
-        jTextField5.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField5.setText("jTextField5");
+        txtsaldoCDT.setBackground(new java.awt.Color(253, 231, 255));
+        txtsaldoCDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsaldoCDTActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(204, 102, 255));
         jButton5.setText("Abrir");
@@ -158,8 +164,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel12.setText("Mes: ");
 
-        jTextField6.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField6.setText("jTextField6");
+        txtMES.setBackground(new java.awt.Color(253, 231, 255));
 
         jButton7.setBackground(new java.awt.Color(204, 102, 255));
         jButton7.setText("Avanzar mes");
@@ -175,8 +180,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel13.setText("TOTAl: ");
 
-        jTextField7.setBackground(new java.awt.Color(253, 231, 255));
-        jTextField7.setText("jTextField7");
+        txtTOTAL.setBackground(new java.awt.Color(253, 231, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -198,11 +202,11 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jLabel3)
                         .addGap(12, 12, 12)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
                         .addComponent(jLabel4)
                         .addGap(12, 12, 12)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,7 +225,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addComponent(jButton2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtsaldoAHORRO, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(382, 382, 382)
                         .addComponent(jButton1))
@@ -230,7 +234,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsaldoCORRIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
@@ -243,7 +247,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jLabel11)
                         .addGap(40, 40, 40)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtsaldoCDT, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
                         .addComponent(jButton5)
                         .addGap(28, 28, 28)
@@ -255,11 +259,11 @@ public class JF_Principal extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addGap(72, 72, 72)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMES, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(14, 14, 14)
@@ -280,8 +284,8 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNOMBRE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCEDULA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +308,7 @@ public class JF_Principal extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addComponent(jLabel8))
                             .addComponent(jButton2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtsaldoAHORRO, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
@@ -316,7 +320,7 @@ public class JF_Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel9))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtsaldoCORRIENTE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton3)
                             .addComponent(jButton4))
                         .addGap(19, 19, 19)
@@ -326,7 +330,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtsaldoCDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton5)
                             .addComponent(jButton6))
                         .addGap(7, 7, 7)
@@ -334,13 +338,13 @@ public class JF_Principal extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMES, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel13)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTOTAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -367,9 +371,9 @@ public class JF_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNOMBREActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNOMBREActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -386,6 +390,14 @@ public class JF_Principal extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void txtCEDULAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEDULAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCEDULAActionPerformed
+
+    private void txtsaldoCDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaldoCDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsaldoCDTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -453,12 +465,12 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField txtCEDULA;
+    private javax.swing.JTextField txtMES;
+    private javax.swing.JTextField txtNOMBRE;
+    private javax.swing.JTextField txtTOTAL;
+    private javax.swing.JTextField txtsaldoAHORRO;
+    private javax.swing.JTextField txtsaldoCDT;
+    private javax.swing.JTextField txtsaldoCORRIENTE;
     // End of variables declaration//GEN-END:variables
 }
