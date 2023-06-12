@@ -5,6 +5,7 @@
 package cuentas;
 
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,20 +31,22 @@ public class CDT implements Serializable{
         return intereses;
     }
     
-    
-    public double cerrar(){
-        return 0;
-    }
-    
-    public void abrir(){
-        
-    }
-
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
     public void setIntereses(double intereses) {
         this.intereses = intereses;
+    }
+    
+    public double cerrar(){
+        double dinero = this.saldo;
+        this.saldo=0.0;
+        return 0;
+    }
+    
+    public void aumentarMes(){
+        this.saldo += this.saldo*this.intereses;
+        JOptionPane.showMessageDialog(null, "El Nuevo saldo en el CDT es: "+this.saldo);
     }
 }

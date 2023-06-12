@@ -5,6 +5,7 @@
 package cuentas;
 
 import java.io.Serializable;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,13 +14,21 @@ import java.io.Serializable;
 public class Corriente extends Cuenta implements Serializable{
 
     @Override
-    public void retirar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void retirar(double cantidad) {
+       double valor = super.getSaldo();
+       valor-=cantidad; 
+       super.setSaldo(valor);
+       JOptionPane.showConfirmDialog(null, "El nuevo saldo en la cuenta corriente es: "+super.getSaldo());
     }
 
     @Override
-    public void consignar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void consignar(double cantidad) {
+        double valor = super.getSaldo();
+       valor+=cantidad; 
+       super.setSaldo(valor);
+       JOptionPane.showConfirmDialog(null, "El nuevo saldo en la cuenta corriente es: "+super.getSaldo());
     }
+
+    
     
 }

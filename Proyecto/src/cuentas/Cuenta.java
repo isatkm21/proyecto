@@ -29,6 +29,6 @@ public abstract class Cuenta implements Serializable{
         this.saldo = saldo;
     }
     
-    public abstract void retirar();
-    public abstract void consignar();
+    public abstract void retirar(double cantidad);
+    public abstract void consignar(double cantidad);
 }
