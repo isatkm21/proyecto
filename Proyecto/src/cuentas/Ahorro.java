@@ -29,21 +29,21 @@ public class Ahorro extends Cuenta implements Serializable {
        double valor = super.getSaldo();
        valor-=cantidad; 
        super.setSaldo(valor);
-       JOptionPane.showConfirmDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
+       JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
     }
 
     @Override
     public void consignar(double cantidad) {
         double valor = super.getSaldo();
-       valor+=cantidad; 
+       valor= valor+cantidad; 
        super.setSaldo(valor);
-       JOptionPane.showConfirmDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
+       JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
     }
     
     public void aumentarMes(){
         double valor = super.getSaldo();
-       valor+=valor*this.intereses;
+       valor= valor + (valor*this.intereses);
        super.setSaldo(valor);
-       JOptionPane.showConfirmDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
+       JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: "+super.getSaldo());
     }
 }

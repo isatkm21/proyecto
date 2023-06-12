@@ -4,6 +4,7 @@
  */
 package proyecto;
 
+import cuentas.CDT;
 import cuentas.Cliente;
 import datos.ListaClientes;
 import datos.Logica;
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ISABELLA MANJARRES
  */
 public class JF_Principal extends javax.swing.JFrame {
-    
+
     Logica lista = new ListaClientes();
 
     /**
@@ -30,7 +31,7 @@ public class JF_Principal extends javax.swing.JFrame {
         this.iniciarTabla();
     }
 
-    public void habilitarComponentes(){
+    public void habilitarComponentes() {
         this.cAhorro.setEnabled(true);
         this.rAhorros.setEnabled(true);
         this.cCorriente.setEnabled(true);
@@ -39,8 +40,8 @@ public class JF_Principal extends javax.swing.JFrame {
         this.cerrar.setEnabled(true);
         this.avanzar.setEnabled(true);
     }
-    
-    public void deshabilitarComponentes(){
+
+    public void deshabilitarComponentes() {
         this.cAhorro.setEnabled(false);
         this.rAhorros.setEnabled(false);
         this.cCorriente.setEnabled(false);
@@ -49,8 +50,8 @@ public class JF_Principal extends javax.swing.JFrame {
         this.cerrar.setEnabled(false);
         this.avanzar.setEnabled(false);
     }
-    
-    private void iniciarTabla(){
+
+    private void iniciarTabla() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Nombre");
         model.addColumn("Identificacion");
@@ -58,12 +59,13 @@ public class JF_Principal extends javax.swing.JFrame {
         model.addColumn("Ahorro");
         model.addColumn("CDT");
         this.listaClientes.setModel(model);
-        if(lista!=null){
-            for(Cliente c: lista.listaClientes()){
+        if (lista != null) {
+            for (Cliente c : lista.listaClientes()) {
                 model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo()});
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -132,11 +134,6 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel3.setText("Nombre: ");
 
         nombre.setBackground(new java.awt.Color(253, 231, 255));
-        nombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Cédula: ");
 
@@ -225,9 +222,9 @@ public class JF_Principal extends javax.swing.JFrame {
         cAhorro.setText("Consignar");
         cAhorro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cAhorro.setEnabled(false);
-        cAhorro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAhorroActionPerformed(evt);
+        cAhorro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cAhorroMouseClicked(evt);
             }
         });
 
@@ -236,9 +233,9 @@ public class JF_Principal extends javax.swing.JFrame {
         rAhorros.setText("Retirar");
         rAhorros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rAhorros.setEnabled(false);
-        rAhorros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rAhorrosActionPerformed(evt);
+        rAhorros.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rAhorrosMouseClicked(evt);
             }
         });
 
@@ -288,12 +285,22 @@ public class JF_Principal extends javax.swing.JFrame {
         cCorriente.setText("Consignar");
         cCorriente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cCorriente.setEnabled(false);
+        cCorriente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cCorrienteMouseClicked(evt);
+            }
+        });
 
         rCorriente.setBackground(new java.awt.Color(204, 102, 255));
         rCorriente.setForeground(new java.awt.Color(0, 0, 0));
         rCorriente.setText("Retirar");
         rCorriente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         rCorriente.setEnabled(false);
+        rCorriente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rCorrienteMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -344,9 +351,9 @@ public class JF_Principal extends javax.swing.JFrame {
         abrir.setText("Abrir");
         abrir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         abrir.setEnabled(false);
-        abrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abrirActionPerformed(evt);
+        abrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                abrirMouseClicked(evt);
             }
         });
 
@@ -355,6 +362,11 @@ public class JF_Principal extends javax.swing.JFrame {
         cerrar.setText("Cerrar");
         cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrar.setEnabled(false);
+        cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cerrarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -627,30 +639,13 @@ public class JF_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_avanzarActionPerformed
 
-    private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_abrirActionPerformed
-
-    private void rAhorrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rAhorrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rAhorrosActionPerformed
-
-    private void cAhorroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAhorroActionPerformed
-        
-    }//GEN-LAST:event_cAhorroActionPerformed
-
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
-
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
-        String nombre = this.nombre.getText();
         int id = 0;
         try {
             id = Integer.parseInt(this.cedula.getText());
             Cliente w = this.lista.buscarCliente(id);
             if (w == null) {
-                JOptionPane.showMessageDialog(null, "Error en la Busqueda");
+                JOptionPane.showMessageDialog(null, "Error en la Busqueda, No se encontraron Similares");
             } else {
                 this.nombre.setText(w.getNombre());
                 this.sAhorro.setText(Double.toString(w.getAhorro().getSaldo()));
@@ -670,17 +665,17 @@ public class JF_Principal extends javax.swing.JFrame {
         Cliente c = null;
         try {
             nombre = this.nombre.getText();
-            if(nombre.isBlank()){
+            if (nombre.isBlank()) {
                 JOptionPane.showMessageDialog(null, "El campo de nombre no puede estar vacío");
-            }else{
+            } else {
                 id = Integer.parseInt(this.cedula.getText());
                 c = this.lista.buscarCliente(id);
-                if(c==null){
+                if (c == null) {
                     c = new Cliente(nombre, id);
                     this.lista.agregarCliente(c);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "El Cliente Ya existe");
-                }     
+                }
             }
             this.habilitarComponentes();
             this.iniciarTabla();
@@ -690,15 +685,148 @@ public class JF_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnagregarMouseClicked
 
     private void limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_limpiarMouseClicked
-       this.nombre.setText("");
-       this.cedula.setText("");
-        this.sAhorro.setText("0");
-       this.sCorriente.setText("0");
-        this.sCDT.setText("0");
-        this.numMes.setText("0");
-        this.total.setText("0");
+        this.nombre.setText("");
+        this.cedula.setText("");
+        this.sAhorro.setText("");
+        this.sCorriente.setText("");
+        this.sCDT.setText("");
+        this.numMes.setText("");
+        this.total.setText("");
         this.deshabilitarComponentes();
     }//GEN-LAST:event_limpiarMouseClicked
+
+    private void cAhorroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cAhorroMouseClicked
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            double consig = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
+            for (Cliente c : this.lista.listaClientes()) {
+                if (c.getId() == id) {
+                    c.getAhorro().consignar(consig);
+                    this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
+                }
+            }
+            this.iniciarTabla();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        }
+    }//GEN-LAST:event_cAhorroMouseClicked
+
+    private void rAhorrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rAhorrosMouseClicked
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            double retirar = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
+            for (Cliente c : this.lista.listaClientes()) {
+                if (c.getId() == id) {
+                    if (c.getAhorro().getSaldo() < retirar) {
+                        JOptionPane.showMessageDialog(null, "El Valor a retirar, excede el saldo de la cuenta");
+                    } else {
+                        c.getAhorro().retirar(retirar);
+                        this.sAhorro.setText(Double.toString(c.getAhorro().getSaldo()));
+                    }
+                }
+            }
+            this.iniciarTabla();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        }
+    }//GEN-LAST:event_rAhorrosMouseClicked
+
+    private void cCorrienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cCorrienteMouseClicked
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            double consig = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
+            for (Cliente c : this.lista.listaClientes()) {
+                if (c.getId() == id) {
+                    c.getCorriente().consignar(consig);
+                    this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                }
+            }
+            this.iniciarTabla();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
+        }
+    }//GEN-LAST:event_cCorrienteMouseClicked
+
+    private void rCorrienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rCorrienteMouseClicked
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            double retirar = Double.parseDouble(JOptionPane.showInputDialog("¿Qué cantidad desea Consignar?"));
+            for (Cliente c : this.lista.listaClientes()) {
+                if (c.getId() == id) {
+                    if (c.getCorriente().getSaldo() < retirar) {
+                        JOptionPane.showMessageDialog(null, "El Valor a retirar, excede el saldo de la cuenta");
+                    } else {
+                        c.getCorriente().retirar(retirar);
+                        this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                    }
+                }
+            }
+            this.iniciarTabla();
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
+        }
+    }//GEN-LAST:event_rCorrienteMouseClicked
+
+    private void abrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_abrirMouseClicked
+
+        int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            if (Double.parseDouble(this.sCDT.getText()) > 0) {
+                JOptionPane.showMessageDialog(null, "El CDT ha sido creado, Si quiere abrir un nuevo CDT"
+                        + " \nPrimero, debe cerrar el existente");
+            } else {
+                double saldo = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor inicial del nuevo CDT: "));
+                double interes;
+                do {
+                    interes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el porcentaje de intereses: "
+                            + "\nEjemplo: 50% = 0.5 \nEl Porcertanje Ingresado, no puede ser mayor a 1"));
+                } while (interes > 1);
+                for (Cliente c : this.lista.listaClientes()) {
+                    if (c.getId() == id) {
+                        c.setCdt(new CDT(saldo, interes));
+                        JOptionPane.showMessageDialog(null, "CDT creado con éxito!");
+                        this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                        this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                    }
+                }
+                this.iniciarTabla();
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        }
+    }//GEN-LAST:event_abrirMouseClicked
+
+    private void cerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cerrarMouseClicked
+       int id = 0;
+        try {
+            id = Integer.parseInt(this.cedula.getText());
+            if (Double.parseDouble(this.sCDT.getText()) == 0) {
+                JOptionPane.showMessageDialog(null, "El CDT aun no ha sido creado");
+            } else {
+                for (Cliente c : this.lista.listaClientes()) {
+                    if (c.getId() == id) {
+                        double consig = c.getCdt().cerrar();
+                        c.getCorriente().consignar(consig);
+                        JOptionPane.showMessageDialog(null, "CDT cerrado con éxito!");
+                        this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
+                        this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                    }
+                }
+                this.iniciarTabla();
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+        }
+    }//GEN-LAST:event_cerrarMouseClicked
 
     /**
      * @param args the command line arguments

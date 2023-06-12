@@ -42,11 +42,11 @@ public class CDT implements Serializable{
     public double cerrar(){
         double dinero = this.saldo;
         this.saldo=0.0;
-        return 0;
+        return dinero;
     }
     
     public void aumentarMes(){
-        this.saldo += this.saldo*this.intereses;
+        this.saldo = this.saldo + (this.saldo*this.intereses);
         JOptionPane.showMessageDialog(null, "El Nuevo saldo en el CDT es: "+this.saldo);
     }
 }
