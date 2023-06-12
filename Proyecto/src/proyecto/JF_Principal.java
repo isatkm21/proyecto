@@ -26,6 +26,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
     Logica lista = new ArchivoTexto();
     Cliente cliente = null;
+
     /**
      * Creates new form JF_Principal
      */
@@ -54,7 +55,6 @@ public class JF_Principal extends javax.swing.JFrame {
         this.rCorriente.setEnabled(false);
         this.abrir.setEnabled(false);
         this.cerrar.setEnabled(false);
-        this.avanzar.setEnabled(false);
     }
 
     private void iniciarTabla() {
@@ -63,14 +63,14 @@ public class JF_Principal extends javax.swing.JFrame {
         model.addColumn("Identificacion");
         model.addColumn("Corriente");
         model.addColumn("Ahorro");
-        model.addColumn("CDT");
+        model.addColumn("CDT  [%]");
         model.addColumn("Total");
         this.listaClientes.setModel(model);
         if (lista != null) {
             try {
                 List<Cliente> list2 = lista.listaClientes();
                 for (Cliente c : list2) {
-                    model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo(), c.montoTotal()});
+                    model.addRow(new Object[]{c.getNombre(), c.getId(), c.getCorriente().getSaldo(), c.getAhorro().getSaldo(), c.getCdt().getSaldo()+" ["+c.getCdt().getIntereses()+"]", c.montoTotal()});
                 }
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Aun no hay clientes, Registrelos!!");
@@ -228,6 +228,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         sAhorro.setEditable(false);
         sAhorro.setBackground(new java.awt.Color(253, 231, 255));
+        sAhorro.setEnabled(false);
 
         cAhorro.setBackground(new java.awt.Color(204, 102, 255));
         cAhorro.setForeground(new java.awt.Color(0, 0, 0));
@@ -291,6 +292,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
         sCorriente.setEditable(false);
         sCorriente.setBackground(new java.awt.Color(253, 231, 255));
+        sCorriente.setEnabled(false);
 
         cCorriente.setBackground(new java.awt.Color(204, 102, 255));
         cCorriente.setForeground(new java.awt.Color(0, 0, 0));
@@ -355,8 +357,8 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jLabel11.setText("Saldo CDT: ");
 
-        sCDT.setEditable(false);
         sCDT.setBackground(new java.awt.Color(253, 231, 255));
+        sCDT.setEnabled(false);
 
         abrir.setBackground(new java.awt.Color(204, 102, 255));
         abrir.setForeground(new java.awt.Color(0, 0, 0));
@@ -425,7 +427,6 @@ public class JF_Principal extends javax.swing.JFrame {
         avanzar.setForeground(new java.awt.Color(0, 0, 0));
         avanzar.setText("Avanzar mes");
         avanzar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        avanzar.setEnabled(false);
         avanzar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 avanzarMouseClicked(evt);
@@ -663,10 +664,10 @@ public class JF_Principal extends javax.swing.JFrame {
                 this.nombre.setText(w.getNombre());
                 this.sAhorro.setText(Double.toString(w.getAhorro().getSaldo()));
                 this.sCorriente.setText(Double.toString(w.getCorriente().getSaldo()));
-                this.sCDT.setText(Double.toString(w.getCdt().getSaldo())+" ["+Double.toString(w.getCdt().getIntereses())+"]");
+                this.sCDT.setText(Double.toString(w.getCdt().getSaldo()) + " [" + Double.toString(w.getCdt().getIntereses()) + "]");
                 this.total.setText(Double.toString(w.montoTotal()));
                 this.habilitarComponentes();
-                this.cliente=w;
+                this.cliente = w;
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
@@ -765,7 +766,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         this.total.setText(Double.toString(c.montoTotal()));
                     }
                 }
-                this.lista.agregarCliente(c,true);
+                this.lista.agregarCliente(c, true);
             }
             this.iniciarTabla();
 
@@ -838,20 +839,20 @@ public class JF_Principal extends javax.swing.JFrame {
                         + " \nPrimero, debe cerrar el existente");
             } else {
                 double saldo = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor inicial del nuevo CDT: "));
-//                double interes;
-                //do {
-                   double interes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el porcentaje de intereses: \nEjemplo: 50% = 0.5 \nEl Porcentaje Ingresado no puede ser mayor a 1"));
-                //} while (interes > 1);
-                JOptionPane.showMessageDialog(null, "intereses: "+interes);
+                double interes;
+                do {
+               interes = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el porcentaje de intereses: \nEjemplo: 50% = 0.5 \nEl Porcentaje Ingresado no puede ser mayor a 1"));
+                } while (interes > 1);
+                JOptionPane.showMessageDialog(null, "intereses: " + interes);
                 List<Cliente> list2 = lista.listaClientes();
                 this.lista.eliminar();
                 for (Cliente c : list2) {
                     if (c.getId() == id) {
-                       c.getCdt().setSaldo(saldo);
-                       c.getCdt().setIntereses(interes);
+                        c.getCdt().setSaldo(saldo);
+                        c.getCdt().setIntereses(interes);
                         JOptionPane.showMessageDialog(null, "CDT creado con éxito!");
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
-                        this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                        this.sCDT.setText(Double.toString(c.getCdt().getSaldo())+"  ["+c.getCdt().getSaldo()+"]");
                         this.total.setText(Double.toString(c.montoTotal()));
                         cliente = c;
                     }
@@ -860,7 +861,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 this.iniciarTabla();
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras o estar vacios");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }
@@ -870,7 +871,7 @@ public class JF_Principal extends javax.swing.JFrame {
         int id = 0;
         try {
             id = Integer.parseInt(this.cedula.getText());
-            if (cliente.getCdt().getSaldo()== 0) {
+            if (cliente.getCdt().getSaldo() == 0) {
                 JOptionPane.showMessageDialog(null, "El CDT aun no ha sido creado");
             } else {
                 List<Cliente> list2 = lista.listaClientes();
@@ -883,7 +884,7 @@ public class JF_Principal extends javax.swing.JFrame {
                         this.sCorriente.setText(Double.toString(c.getCorriente().getSaldo()));
                         this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
                         this.total.setText(Double.toString(c.montoTotal()));
-                        cliente=c;
+                        cliente = c;
                     }
                     this.lista.agregarCliente(c, true);
                 }
@@ -899,27 +900,39 @@ public class JF_Principal extends javax.swing.JFrame {
     private void avanzarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_avanzarMouseClicked
         int id = 0;
         try {
-            id = Integer.parseInt(this.cedula.getText());
-            int numMeses = parseInt(this.numMes.getText());
-            List<Cliente> list2 = lista.listaClientes();
-            this.lista.eliminar();
-            for (Cliente c : list2) {
-                Cliente aux=c;
-                aux.getAhorro().aumentarMes(numMeses);
-                aux.getCdt().aumentarMes(numMeses);
-                if (aux.getId() == id) {
-                    this.sAhorro.setText(Double.toString(aux.getAhorro().getSaldo()));
-                    JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: " + aux.getAhorro().getSaldo());
-                    this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
-                    JOptionPane.showMessageDialog(null, "El nuevo monto en el CDT es: " + aux.getCdt().getSaldo());
-                    this.total.setText(Double.toString(c.montoTotal()));
+            if (this.cedula.getText().isBlank()) {
+                int numMeses = parseInt(this.numMes.getText());
+                List<Cliente> list2 = lista.listaClientes();
+                this.lista.eliminar();
+                for (Cliente c : list2) {
+                    Cliente aux = c;
+                    aux.getAhorro().aumentarMes(numMeses);
+                    aux.getCdt().aumentarMes(numMeses);
+                    this.lista.agregarCliente(aux, true);
                 }
-                this.lista.agregarCliente(aux, true);
+                this.iniciarTabla();
+            } else {
+                id = Integer.parseInt(this.cedula.getText());
+                int numMeses = parseInt(this.numMes.getText());
+                List<Cliente> list2 = lista.listaClientes();
+                this.lista.eliminar();
+                for (Cliente c : list2) {
+                    Cliente aux = c;
+                    aux.getAhorro().aumentarMes(numMeses);
+                    aux.getCdt().aumentarMes(numMeses);
+                    if (aux.getId() == id) {
+                        this.sAhorro.setText(Double.toString(aux.getAhorro().getSaldo()));
+                        JOptionPane.showMessageDialog(null, "El nuevo saldo en la cuenta de ahorros es: " + aux.getAhorro().getSaldo());
+                        this.sCDT.setText(Double.toString(c.getCdt().getSaldo()));
+                        JOptionPane.showMessageDialog(null, "El nuevo monto en el CDT es: " + aux.getCdt().getSaldo());
+                        this.total.setText(Double.toString(c.montoTotal()));
+                    }
+                    this.lista.agregarCliente(aux, true);
+                }
+                this.iniciarTabla();
             }
-            this.iniciarTabla();
-
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras");
+            JOptionPane.showMessageDialog(null, "Los campos Numericos no pueden contener letras o estar vacios");
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Parece que algo ha salido mal");
         }

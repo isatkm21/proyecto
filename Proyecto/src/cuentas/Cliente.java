@@ -87,7 +87,8 @@ public class Cliente implements Archivable {
                 this.getId()+";"+
                 this.getCorriente().getSaldo()+";"+
                 this.getAhorro().getSaldo()+";"+
-                this.getCdt().getSaldo();
+                this.getCdt().getSaldo()+";"+
+                this.getCdt().getIntereses();
     }
 
     @Override
@@ -96,7 +97,8 @@ public class Cliente implements Archivable {
                               String.valueOf(this.getId()),
                               String.valueOf(this.getCorriente().getSaldo()),
                               String.valueOf(this.getAhorro().getSaldo()),
-                              String.valueOf(this.getCdt().getSaldo())
+                              String.valueOf(this.getCdt().getSaldo()),
+                              String.valueOf(this.getCdt().getIntereses())
                             };
           return data;
     }

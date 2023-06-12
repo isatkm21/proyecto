@@ -105,6 +105,8 @@ public class ArchivoTexto implements Logica {
         c.getAhorro().setSaldo(saldoA);
         double saldocdt = Double.valueOf(data[4]);
         c.getCdt().setSaldo(saldocdt);
+        double interescdt = Double.valueOf(data[5]);
+        c.getCdt().setIntereses(interescdt);
         return c;
     }
     
