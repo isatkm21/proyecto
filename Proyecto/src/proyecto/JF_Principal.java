@@ -47,6 +47,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
+        btnagregar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -95,7 +96,6 @@ public class JF_Principal extends javax.swing.JFrame {
 
         nombre.setEditable(false);
         nombre.setBackground(new java.awt.Color(253, 231, 255));
-        nombre.setText("jTextField1");
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
@@ -105,7 +105,6 @@ public class JF_Principal extends javax.swing.JFrame {
         jLabel4.setText("Cédula: ");
 
         cedula.setBackground(new java.awt.Color(253, 231, 255));
-        cedula.setText("jTextField2");
 
         btnBuscar.setBackground(new java.awt.Color(204, 102, 255));
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
@@ -114,6 +113,16 @@ public class JF_Principal extends javax.swing.JFrame {
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
+            }
+        });
+
+        btnagregar.setBackground(new java.awt.Color(204, 102, 255));
+        btnagregar.setForeground(new java.awt.Color(0, 0, 0));
+        btnagregar.setText("Agregar");
+        btnagregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnagregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnagregarMouseClicked(evt);
             }
         });
 
@@ -128,9 +137,13 @@ public class JF_Principal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(btnagregar)
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addContainerGap()
@@ -142,12 +155,14 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(btnBuscar))
+                    .addComponent(btnagregar))
                 .addGap(13, 13, 13))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -586,6 +601,20 @@ public class JF_Principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnBuscarMouseClicked
 
+    private void btnagregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnagregarMouseClicked
+        String nombre;
+        int id = 0;
+        try {
+            nombre = this.nombre.getText();
+            id = Integer.parseInt(this.cedula.getText());
+            if(nombre.isBlank()){
+                
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
+        }
+    }//GEN-LAST:event_btnagregarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -623,6 +652,7 @@ public class JF_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnagregar;
     private javax.swing.JTextField cedula;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
