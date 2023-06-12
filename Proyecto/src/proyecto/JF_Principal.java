@@ -83,6 +83,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+<<<<<<< HEAD
         nombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
@@ -118,6 +119,40 @@ public class JF_Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaClientes = new javax.swing.JTable();
         limpiar = new javax.swing.JButton();
+=======
+        txtNOMBRE = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtCEDULA = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtsaldoAHORRO = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtsaldoCORRIENTE = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txtsaldoCDT = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtMES = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 22), new java.awt.Dimension(0, 22), new java.awt.Dimension(32767, 22));
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        txtTOTAL = new javax.swing.JTextField();
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,6 +160,7 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(204, 51, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/Logo.png"))); // NOI18N
+        jPanel1.add(jLabel1);
 
         jLabel5.setText("Información Bancaria");
 
@@ -132,13 +168,29 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 102, 255)));
 
         jLabel2.setText("Datos del cliente");
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jPanel1.add(jLabel2);
 
         jLabel3.setText("Nombre: ");
+        jPanel1.add(jLabel3);
 
+<<<<<<< HEAD
         nombre.setBackground(new java.awt.Color(253, 231, 255));
+=======
+        txtNOMBRE.setEditable(false);
+        txtNOMBRE.setBackground(new java.awt.Color(253, 231, 255));
+        txtNOMBRE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNOMBREActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtNOMBRE);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         jLabel4.setText("Cédula: ");
+        jPanel1.add(jLabel4);
 
+<<<<<<< HEAD
         cedula.setBackground(new java.awt.Color(253, 231, 255));
 
         btnBuscar.setBackground(new java.awt.Color(204, 102, 255));
@@ -210,14 +262,33 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 102, 255)));
+=======
+        txtCEDULA.setBackground(new java.awt.Color(253, 231, 255));
+        txtCEDULA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCEDULAActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtCEDULA);
+
+        jLabel5.setText("Información Bancaria");
+        jPanel1.add(jLabel5);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         jLabel6.setBackground(new java.awt.Color(204, 153, 255));
         jLabel6.setText("Cuenta de ahorros ");
+        jPanel1.add(jLabel6);
 
         jLabel7.setText("Saldo de ahorro: ");
+        jPanel1.add(jLabel7);
 
+<<<<<<< HEAD
         sAhorro.setEditable(false);
         sAhorro.setBackground(new java.awt.Color(253, 231, 255));
+=======
+        txtsaldoAHORRO.setBackground(new java.awt.Color(253, 231, 255));
+        jPanel1.add(txtsaldoAHORRO);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         cAhorro.setBackground(new java.awt.Color(204, 102, 255));
         cAhorro.setForeground(new java.awt.Color(0, 0, 0));
@@ -229,6 +300,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 cAhorroMouseClicked(evt);
             }
         });
+        jPanel1.add(jButton1);
 
         rAhorros.setBackground(new java.awt.Color(204, 102, 255));
         rAhorros.setForeground(new java.awt.Color(0, 0, 0));
@@ -240,6 +312,7 @@ public class JF_Principal extends javax.swing.JFrame {
                 rAhorrosMouseClicked(evt);
             }
         });
+        jPanel1.add(jButton2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -276,9 +349,12 @@ public class JF_Principal extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 255)));
 
         jLabel8.setText("Cuenta corriente");
+        jPanel1.add(jLabel8);
 
         jLabel9.setText("Saldo corriente:");
+        jPanel1.add(jLabel9);
 
+<<<<<<< HEAD
         sCorriente.setEditable(false);
         sCorriente.setBackground(new java.awt.Color(253, 231, 255));
 
@@ -340,13 +416,37 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 255)));
+=======
+        txtsaldoCORRIENTE.setBackground(new java.awt.Color(253, 231, 255));
+        jPanel1.add(txtsaldoCORRIENTE);
+
+        jButton3.setBackground(new java.awt.Color(204, 102, 255));
+        jButton3.setText("Consignar");
+        jPanel1.add(jButton3);
+
+        jButton4.setBackground(new java.awt.Color(204, 102, 255));
+        jButton4.setText("Retirar");
+        jPanel1.add(jButton4);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         jLabel10.setText("CDT");
+        jPanel1.add(jLabel10);
 
         jLabel11.setText("Saldo CDT: ");
+        jPanel1.add(jLabel11);
 
+<<<<<<< HEAD
         sCDT.setEditable(false);
         sCDT.setBackground(new java.awt.Color(253, 231, 255));
+=======
+        txtsaldoCDT.setBackground(new java.awt.Color(253, 231, 255));
+        txtsaldoCDT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtsaldoCDTActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtsaldoCDT);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         abrir.setBackground(new java.awt.Color(204, 102, 255));
         abrir.setForeground(new java.awt.Color(0, 0, 0));
@@ -358,7 +458,9 @@ public class JF_Principal extends javax.swing.JFrame {
                 abrirMouseClicked(evt);
             }
         });
+        jPanel1.add(jButton5);
 
+<<<<<<< HEAD
         cerrar.setBackground(new java.awt.Color(204, 102, 255));
         cerrar.setForeground(new java.awt.Color(0, 0, 0));
         cerrar.setText("Cerrar");
@@ -406,10 +508,21 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 255)));
+=======
+        jButton6.setBackground(new java.awt.Color(204, 102, 255));
+        jButton6.setText("Cerrar");
+        jPanel1.add(jButton6);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         jLabel12.setText("Mes: ");
+        jPanel1.add(jLabel12);
 
+<<<<<<< HEAD
         numMes.setBackground(new java.awt.Color(253, 231, 255));
+=======
+        txtMES.setBackground(new java.awt.Color(253, 231, 255));
+        jPanel1.add(txtMES);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         avanzar.setBackground(new java.awt.Color(204, 102, 255));
         avanzar.setForeground(new java.awt.Color(0, 0, 0));
@@ -421,9 +534,27 @@ public class JF_Principal extends javax.swing.JFrame {
                 avanzarMouseClicked(evt);
             }
         });
+        jPanel1.add(jButton7);
+        jPanel1.add(filler1);
+        jPanel1.add(jSeparator2);
+        jPanel1.add(jSeparator3);
+        jPanel1.add(jSeparator1);
 
+<<<<<<< HEAD
+=======
+        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator4);
+        jPanel1.add(jSeparator5);
+        jPanel1.add(jSeparator6);
+
+        jSeparator7.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator7);
+
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
         jLabel13.setText("TOTAl: ");
+        jPanel1.add(jLabel13);
 
+<<<<<<< HEAD
         total.setEditable(false);
         total.setBackground(new java.awt.Color(253, 231, 255));
 
@@ -617,6 +748,10 @@ public class JF_Principal extends javax.swing.JFrame {
                 .addComponent(limpiar)
                 .addGap(10, 10, 10))
         );
+=======
+        txtTOTAL.setBackground(new java.awt.Color(253, 231, 255));
+        jPanel1.add(txtTOTAL);
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -637,6 +772,7 @@ public class JF_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         int id = 0;
         try {
@@ -655,6 +791,25 @@ public class JF_Principal extends javax.swing.JFrame {
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "La cedula solo puede contener letras");
         }
+=======
+<<<<<<< HEAD
+    private void txtNOMBREActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNOMBREActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNOMBREActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+=======
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+>>>>>>> abec433f3853c4858ccb293781c2322720f99ec6
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 
     }//GEN-LAST:event_btnBuscarMouseClicked
 
@@ -861,6 +1016,14 @@ public class JF_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_avanzarMouseClicked
 
+    private void txtCEDULAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEDULAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCEDULAActionPerformed
+
+    private void txtsaldoCDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsaldoCDTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtsaldoCDTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -928,6 +1091,7 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+<<<<<<< HEAD
     private javax.swing.JButton limpiar;
     private javax.swing.JTable listaClientes;
     private javax.swing.JTextField nombre;
@@ -938,5 +1102,20 @@ public class JF_Principal extends javax.swing.JFrame {
     private javax.swing.JTextField sCDT;
     private javax.swing.JTextField sCorriente;
     private javax.swing.JTextField total;
+=======
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JTextField txtCEDULA;
+    private javax.swing.JTextField txtMES;
+    private javax.swing.JTextField txtNOMBRE;
+    private javax.swing.JTextField txtTOTAL;
+    private javax.swing.JTextField txtsaldoAHORRO;
+    private javax.swing.JTextField txtsaldoCDT;
+    private javax.swing.JTextField txtsaldoCORRIENTE;
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
     // End of variables declaration//GEN-END:variables
 }

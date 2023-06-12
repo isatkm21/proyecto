@@ -24,46 +24,6 @@ public class Cliente implements Serializable {
         this.ahorro = new Ahorro();
         this.corriente = new Corriente();
     }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public CDT getCdt() {
-        return cdt;
-    }
-
-    public Corriente getCorriente() {
-        return corriente;
-    }
-
-    public Ahorro getAhorro() {
-        return ahorro;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setCdt(CDT cdt) {
-        this.cdt = cdt;
-    }
-
-    public void setCorriente(Corriente corriente) {
-        this.corriente = corriente;
-    }
-
-    public void setAhorro(Ahorro ahorro) {
-        this.ahorro = ahorro;
-    }
     
     public double montoTotal(){
         return this.cdt.getSaldo()+this.corriente.getSaldo()+this.ahorro.getSaldo();

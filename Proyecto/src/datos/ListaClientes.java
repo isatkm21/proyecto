@@ -6,39 +6,27 @@ package datos;
 
 import cuentas.Cliente;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author ISABELLA MANJARRES
  */
 public class ListaClientes implements Logica, Serializable{
-    private List<Cliente> listado; 
-    
-    public ListaClientes(){
-        this.listado = new ArrayList();
-    }
+
     @Override
     public void agregarCliente(Cliente c) {
-        this.listado.add(c);
-        JOptionPane.showMessageDialog(null, "Cliente registrado con exito");
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public Cliente buscarCliente(int id) {
-        for (Cliente c: this.listado){
-            if(c.getId()==id){
-                return c; 
-            }
-        }
-        return null; 
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public List<Cliente> listaClientes() {
-       return this.listado;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

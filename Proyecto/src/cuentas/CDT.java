@@ -5,7 +5,6 @@
 package cuentas;
 
 import java.io.Serializable;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,6 +30,15 @@ public class CDT implements Serializable{
         return intereses;
     }
     
+    
+    public double cerrar(){
+        return 0;
+    }
+    
+    public void abrir(){
+        
+    }
+
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
@@ -38,6 +46,7 @@ public class CDT implements Serializable{
     public void setIntereses(double intereses) {
         this.intereses = intereses;
     }
+<<<<<<< HEAD
     
     public double cerrar(){
         double dinero = this.saldo;
@@ -50,4 +59,6 @@ public class CDT implements Serializable{
         this.saldo = this.saldo + (this.saldo*this.intereses);    
         }
     }
+=======
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 }

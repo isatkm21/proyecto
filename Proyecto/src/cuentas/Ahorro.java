@@ -5,7 +5,6 @@
 package cuentas;
 
 import java.io.Serializable;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,12 +18,17 @@ public class Ahorro extends Cuenta implements Serializable {
         this.intereses = 0.6;
     }
 
+    public Ahorro(double intereses) {
+        this.intereses = intereses;
+    }
+    
     public Ahorro(){
         super(0);
         this.intereses =0.6;
     }
-
+    
     @Override
+<<<<<<< HEAD
     public void retirar(double cantidad) {
        double valor = super.getSaldo();
        valor-=cantidad; 
@@ -48,4 +52,15 @@ public class Ahorro extends Cuenta implements Serializable {
         super.setSaldo(valor);
        
     }
+=======
+    public void retirar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void consignar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+>>>>>>> 2f7623d458ded01ff4d3c3b6e778ee424ed07873
 }
