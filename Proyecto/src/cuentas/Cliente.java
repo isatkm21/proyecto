@@ -4,6 +4,7 @@
  */
 package cuentas;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
 
 /**
@@ -67,5 +68,13 @@ public class Cliente implements Serializable {
     
     public double montoTotal(){
         return this.cdt.getSaldo()+this.corriente.getSaldo()+this.ahorro.getSaldo();
+    }
+    
+    public void guardar(PrintWriter writer){
+        writer.println(this.getNombre());
+        writer.println(this.getId());
+        writer.println(this.getAhorro().getSaldo());
+        writer.println(this.getCorriente().getSaldo());
+        writer.println(this.getCdt().getSaldo());
     }
 }

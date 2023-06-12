@@ -40,5 +40,9 @@ public class ListaClientes implements Logica, Serializable{
     public List<Cliente> listaClientes() {
        return this.listado;
     }
+
+    public List<Cliente> getListado() {
+        return listado;
+    }
     
 }
